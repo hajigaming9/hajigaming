@@ -3,26 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>hajigaming</title>
-
+<title>hajigaming - Cute Sakura</title>
 <style>
+:root {
+  --primary-color: #ff6f91; /* cute pink */
+  --secondary-color: #ffb347; /* soft orange */
+  --bg-gradient: linear-gradient(135deg, #ffd1dc, #ffecb3); /* pastel pink ke kuning */
+  --text-color: #222;
+}
+
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  color: #222;
   overflow-x: hidden;
+  background: var(--bg-gradient);
+  color: var(--text-color);
 }
 
 /* ================= START SCREEN ================= */
 .start-screen {
   position: fixed;
   inset: 0;
-  background: linear-gradient(120deg, #ff4d6d, #845ec2);
+  background: var(--bg-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,12 +40,14 @@ body {
 
 .start-content {
   text-align: center;
-  color: white;
+  color: #fff;
+  animation: fadeIn 1.2s ease forwards;
 }
 
 .start-content h1 {
   font-size: 3.5rem;
   margin-bottom: 25px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
 }
 
 .start-btn {
@@ -46,22 +56,24 @@ body {
   border: none;
   border-radius: 50px;
   background: white;
-  color: #ff3366;
+  color: var(--primary-color);
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: 0.3s ease;
 }
 
 .start-btn:hover {
   transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 }
 
 /* ================= LOADING ================= */
 .loading-screen {
   position: fixed;
   inset: 0;
-  background: #0f0f1a;
-  color: white;
+  background: #ffe4e1;
+  color: var(--primary-color);
   display: none;
   align-items: center;
   justify-content: center;
@@ -74,15 +86,11 @@ body {
 .loader {
   width: 60px;
   height: 60px;
-  border: 5px solid rgba(255,255,255,0.2);
-  border-top: 5px solid #ff4d6d;
+  border: 5px solid rgba(255,182,193,0.2);
+  border-top: 5px solid var(--primary-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 /* ================= HEADER ================= */
@@ -91,7 +99,7 @@ header {
   top: 0;
   width: 100%;
   height: 80px;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
@@ -100,38 +108,48 @@ header {
   z-index: 100;
   transform: translateY(-100%);
   transition: 0.8s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 header.show {
   transform: translateY(0);
 }
 
+/* Warna logo sama dengan tombol START */
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  color: #ff3366;
+  color: var(--primary-color);
 }
 
 nav a {
   margin-left: 25px;
   text-decoration: none;
   color: #333;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--secondary-color);
+  transform: scale(1.05);
 }
 
 /* ================= HERO ================= */
 .hero {
-  height: calc(20vh);
-  margin-top: 0px;
-  background: url("bg-main.jpg") center / cover no-repeat;
+  height: 10vh;
+  background: url("cute-hero.png") center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
 }
 
 /* ================= BANNER ================= */
 .big-image {
-  padding: 0 80px 80px 80px; /* padding atas 0 */
-  background: #f9f9fb;
+  padding: 80px;
   display: flex;
   justify-content: center;
-  margin: 0; /* hilangkan margin */
 }
 
 .big-image img {
@@ -140,20 +158,25 @@ nav a {
   height: 420px;
   object-fit: cover;
   border-radius: 25px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-  display: block; /* hilangkan celah inline image */
+  box-shadow: 0 20px 50px rgba(255,182,193,0.3);
+  transition: 0.5s ease;
+}
+
+.big-image img:hover {
+  transform: scale(1.03);
 }
 
 /* ================= SECTION ================= */
 section {
   padding: 120px 80px;
-  background: #f9f9fb;
 }
 
 .section-title {
-  font-size: 2.2rem;
-  margin-bottom: 0px;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
   text-align: center;
+  color: var(--primary-color);
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
 }
 
 /* ================= GALLERY ================= */
@@ -168,8 +191,8 @@ section {
   height: 260px;
   object-fit: cover;
   border-radius: 18px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  transition: 0.4s;
+  box-shadow: 0 15px 35px rgba(255,182,193,0.25);
+  transition: 0.5s ease;
 }
 
 .gallery img:hover {
@@ -178,38 +201,59 @@ section {
 
 /* ================= FOOTER ================= */
 footer {
-  background: #111;
-  color: #aaa;
+  background: #ffe4e1;
+  color: var(--primary-color);
   text-align: center;
-  padding: 0px;
+  padding: 25px 0;
+  font-size: 0.9rem;
 }
 
 /* ================= MAIN CONTENT ================= */
 #mainContent {
-  display: none; /* sembunyikan sampai loading selesai */
+  display: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* ================= SAKURA ANIMATION ================= */
+.sakura {
+  position: fixed;
+  top: -50px;
+  width: 30px;
+  height: 30px;
+  background: url('img/sakura.png') no-repeat center/contain;
+  pointer-events: none;
+  z-index: 5000;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  header {
-    padding: 0 25px;
-    height: 70px;
-  }
-  .hero {
-    height: calc(20vh);
-  }
-  section, .big-image {
-    padding: 60px 30px 60px 30px;
-  }
+  header { padding:0 25px; height:70px; }
+  section,.big-image { padding: 60px 30px; }
+  .hero { height: 40vh; }
 }
 </style>
 </head>
-
 <body>
-
+<!-- Audio START -->
 <audio id="startSound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-click-1114.mp3"></audio>
+<!-- Audio background halaman setelah start -->
+<audio id="bgMusic" src="mp3/Cute - Aurel Surya Lie.mp3" loop></audio>
 
-<!-- START -->
+<!-- START SCREEN -->
 <div class="start-screen" id="startScreen">
   <div class="start-content">
     <h1>hajigaming</h1>
@@ -217,14 +261,14 @@ footer {
   </div>
 </div>
 
-<!-- LOADING -->
+<!-- LOADING SCREEN -->
 <div class="loading-screen" id="loadingScreen">
   <div class="loader"></div>
   <p>Loading World...</p>
 </div>
 
 <header id="header">
-  <div class="logo">hajigaming</div>
+  <div class="logo" id="logo">hajigaming</div>
   <nav>
     <a href="#">Home</a>
     <a href="#">Gallery</a>
@@ -233,27 +277,17 @@ footer {
   </nav>
 </header>
 
-<!-- ================= MAIN CONTENT ================= -->
 <div id="mainContent">
-  <!-- HERO -->
   <div class="hero"></div>
-
-  <!-- BANNER 1 -->
   <div class="big-image first">
     <img src="img/foto3.png" alt="Banner 1">
   </div>
-
-  <!-- BANNER 2 -->
   <div class="big-image">
-    <img src="img/foto6.png" alt="Banner 2">
+    <img src="img/foto2.png" alt="Banner 2">
   </div>
-
-  <!-- BANNER 3 -->
   <div class="big-image">
     <img src="img/foto8.png" alt="Banner 3">
   </div>
-
-  <!-- GALLERY -->
   <section>
     <h2 class="section-title">Gallery</h2>
     <div class="gallery">
@@ -263,22 +297,24 @@ footer {
       <img src="img/foto7.png">
     </div>
   </section>
-
   <footer>© 2025 hajigaming</footer>
 </div>
 
 <script>
+// START GAME
 function startGame() {
   const startScreen = document.getElementById("startScreen");
   const loadingScreen = document.getElementById("loadingScreen");
   const header = document.getElementById("header");
   const mainContent = document.getElementById("mainContent");
+  const audio = document.getElementById("startSound");
+  const bgMusic = document.getElementById("bgMusic");
 
-  document.getElementById("startSound").play();
+  audio.currentTime = 0;
+  audio.play();
 
   loadingScreen.style.display = "flex";
   requestAnimationFrame(() => loadingScreen.style.opacity = "1");
-
   startScreen.style.opacity = "0";
   startScreen.style.pointerEvents = "none";
 
@@ -287,13 +323,28 @@ function startGame() {
 
   setTimeout(() => {
     loadingScreen.style.display = "none";
-    mainContent.style.display = "block"; // tampilkan konten setelah loading
+    mainContent.style.display = "block";
+    requestAnimationFrame(() => mainContent.style.opacity = "1");
     header.classList.add("show");
+    bgMusic.play();
   }, 2400);
 }
-</script>
 
+// SAKURA PETALS
+function createSakura() {
+  const sakura = document.createElement("div");
+  sakura.classList.add("sakura");
+  sakura.style.left = Math.random() * window.innerWidth + "px";
+  sakura.style.width = 20 + Math.random() * 20 + "px";
+  sakura.style.height = sakura.style.width;
+  sakura.style.animationDuration = (5 + Math.random() * 5) + "s";
+  sakura.style.opacity = Math.random();
+  document.body.appendChild(sakura);
+  setTimeout(() => sakura.remove(), 10000);
+}
+
+// Generate sakura petals every 300ms
+setInterval(createSakura, 300);
+</script>
 </body>
 </html>
-
-
